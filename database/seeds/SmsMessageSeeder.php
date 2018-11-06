@@ -1,5 +1,6 @@
 <?php
 
+use App\Conversation;
 use App\SmsMessage;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,9 @@ class SmsMessageSeeder extends Seeder
     {
         for ($i=0;$i<30;$i++)
         {
-            factory(SmsMessage::class, 10)->create(['number' => $this->generateNumber()]);
+            $number = $this->generateNumber();
+            $conversation = Conversation::create(['number'=>$number]);
+            factory(SmsMessage::class, 10)->create(['number' => $number, 'conversation_id' => $conversation->id]);
         }
     }
     public function generateNumber($countryCode = '61')

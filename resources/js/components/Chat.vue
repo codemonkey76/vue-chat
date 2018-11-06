@@ -19,29 +19,25 @@
         <transition name="rollup">
             <div v-if="open" class="chat-window chat-shadow">
                 <transition name="slide-right">
-                <div v-if="conversation" class="conversation-window" @click="conversation=!conversation">
-                    <p v-for="message in messages" :class="{sent: message.sent}">{{ message.text }}</p>
-                </div>
+                    <div v-if="conversationView" class="conversation-window">
+                        <p class="conversation-item" v-for="conversation in conversations"
+                           @click="selectConversation(conversation.id)">{{ conversation.number }}</p>
+                    </div>
                 </transition>
                 <transition name="slide-left">
-                <div v-if="! conversation" class="message-window" @click="conversation=!conversation">
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                    <p>message window message window message window message window message window message window message window message window message window message window message window message window message window message window</p>
-                </div>
+                    <div v-if="! conversationView">
+                        <div class="message-header">
+                            <i @click="conversationView=!conversationView"
+                               class="fas fa-lg fa-angle-left mr-2 back-arrow"></i>
+                            Conversation with: </div>
+                        <div id="message-window" class="message-window">
+                            <p v-for="message in messages"
+                               :class="{sent: message.sent}">{{ message.text }}</p>
+                        </div>
+                        <div class="message-footer">
+                            <input @click="scrollDown" type="text" class="form-control chat-message" placeholder="Enter message...">
+                        </div>
+                    </div>
                 </transition>
             </div>
         </transition>
@@ -50,63 +46,116 @@
 
 <script>
     export default {
+        props: ['selectedConversation'],
         data() {
             return {
                 open: false,
-                conversation: true,
+                conversationView: true,
+                conversationId: null,
+                conversations: [],
                 messages: []
             }
         },
         mounted() {
-            console.log('Component mounted.');
-            this.getMessages();
+            this.conversationId = this.selectedConversation;
+            this.getConversations();
+            if (this.conversationId)
+                this.getMessages();
         },
         methods: {
             getMessages() {
-                axios.get('/api/messages').then(response => {
+                axios.get('/api/messages/' + this.conversationId).then(response => {
                     this.messages = response.data;
+                    this.scrollDown();
                 })
+            },
+            getConversations() {
+                axios.get('/api/conversations').then(response => {
+                    this.conversations = response.data;
+                });
+            },
+            selectConversation(item) {
+                this.conversationId = item;
+                this.getMessages();
+                this.conversationView = !this.conversationView;
+            },
+            scrollDown() {
+                let msgWindow = $('#message-window');
+                msgWindow.scrollTop(1000000);
+                console.log('scrolling down');
             }
         }
     }
 </script>
 <style>
+    .chat-message {
+        border-radius: 0 0 1em 1em;
+    }
+    .back-arrow {
+        cursor: pointer;
+    }
+
+    .message-header {
+        background: #aae !important;
+        font-weight: 600;
+        border-radius: 1em 1em 0 0 !important;
+        padding: 20px !important;
+    }
+
+    .conversation-item {
+        cursor: pointer;
+    }
+
     .message-window {
-        position:absolute;
-        padding:20px;
-        top:0;
-        left:0;
+        padding: 20px;
+        left: 0;
+        background: rgba(255, 255, 255, 1);
+        width: 100%;
+        height: 501px;
+        overflow-y: auto;
     }
+
     .conversation-window {
-        position:absolute;
-        padding:20px;
-        top:0;
-        left:0;
+        position: absolute;
+        padding: 20px;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 1);
+        width: 100%;
+        min-height: 100%;
+        border-radius:1em;
     }
-    .conversation-window > p.sent {
-        color:red;
+
+    .message-window > p.sent {
+        color: white;
+        background: #aae;
+        border-radius: 0.5em;
+        padding: 8px;
+        margin-left: 30px;
     }
-    .conversation-window {
-        background: rgba(255, 255, 200, 0.5)
+
+    .conversation-window > p, .message-window > p:not(.sent) {
+        color: black;
+        background: rgb(245, 245, 245);
+        border-radius: 0.5em;
+        padding: 8px;
+        margin-right: 30px;
     }
-    .message-window {
-        background: rgba(255, 200, 255, 0.5)
-    }
+
     .chat-shadow {
         box-shadow: 5px 5px 10px #aaa;
     }
+
     .chat-window {
-        position:fixed;
-        bottom:100px;
+        position: fixed;
+        bottom: 100px;
         right: 25px;
         min-width: 400px;
-        min-height:700px;
-        max-width:400px;
-        max-height:700px;
-        background:#ddd;
+        min-height: 600px;
+        max-width: 400px;
+        max-height: 600px;
+        background: #ddd;
         border-radius: 1em;
-        padding:20px;
-        overflow-y:scroll;
     }
 
     .slide-right-enter-active, .slide-right-leave-active,
@@ -120,17 +169,21 @@
     .spin-enter, .spin-leave-to {
         transform: rotate(720deg);
     }
+
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }
+
     .rollup-enter, .rollup-leave-to {
         transform: translateX(100%);
     }
+
     .slide-left-enter, .slide-left-leave-to {
-        transform:translateX(100%);
+        transform: translateX(100%);
     }
+
     .slide-right-enter, .slide-right-leave-to {
-        transform:translateX(-100%);
+        transform: translateX(-100%);
     }
 
     .chat-color {

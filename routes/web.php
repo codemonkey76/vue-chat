@@ -22,6 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/api/messages', function() {
-   return SmsMessage::all();
-});
+Route::get('/api/messages/{conversation}', 'SmsMessageController@index');
+Route::get('/api/conversations', 'ConversationController@index');

@@ -13879,7 +13879,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -13908,7 +13908,7 @@ window.Vue = __webpack_require__(36);
 // import Chat from './components/chat';
 // Vue.component('chat', Chat);
 
-var files = __webpack_require__(68);
+var files = __webpack_require__(39);
 
 files.keys().map(function (key) {
   return Vue.component(_.last(key.split('/')).split('.')[0], files(key));
@@ -13921,7 +13921,10 @@ files.keys().map(function (key) {
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    conversationId: null
+  }
 });
 
 /***/ }),
@@ -47196,10 +47199,121 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 39 */,
-/* 40 */,
-/* 41 */,
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/Chat.vue": 40
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 39;
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(41)
+}
+var normalizeComponent = __webpack_require__(46)
+/* script */
+var __vue_script__ = __webpack_require__(47)
+/* template */
+var __vue_template__ = __webpack_require__(48)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0d66c37a", Component.options)
+  } else {
+    hotAPI.reload("data-v-0d66c37a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(42);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(44)("74bc32d2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(43)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-window {\n    padding: 20px;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    height: 501px;\n    overflow-y: auto;\n}\n.conversation-window {\n    position: absolute;\n    padding: 20px;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius:1em;\n}\n.message-window > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-window > p, .message-window > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports) {
 
 /*
@@ -47281,7 +47395,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -47300,7 +47414,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(44)
+var listToStyles = __webpack_require__(45)
 
 /*
 type StyleObject = {
@@ -47509,7 +47623,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 /**
@@ -47542,7 +47656,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47651,148 +47765,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./components/Chat.vue": 69
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 68;
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(70)
-}
-var normalizeComponent = __webpack_require__(45)
-/* script */
-var __vue_script__ = __webpack_require__(72)
-/* template */
-var __vue_template__ = __webpack_require__(73)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Chat.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0d66c37a", Component.options)
-  } else {
-    hotAPI.reload("data-v-0d66c37a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(71);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(43)("6566cf6a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(42)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.message-window {\n    position:absolute;\n    padding:20px;\n    top:0;\n    left:0;\n}\n.conversation-window {\n    position:absolute;\n    padding:20px;\n    top:0;\n    left:0;\n}\n.conversation-window > p.sent {\n    color:red;\n}\n.conversation-window {\n    background: rgba(255, 255, 200, 0.5)\n}\n.message-window {\n    background: rgba(255, 200, 255, 0.5)\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position:fixed;\n    bottom:100px;\n    right: 25px;\n    min-width: 400px;\n    min-height:700px;\n    max-width:400px;\n    max-height:700px;\n    background:#ddd;\n    border-radius: 1em;\n    padding:20px;\n    overflow-y:scroll;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform:translateX(100%);\n            transform:translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform:translateX(-100%);\n            transform:translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 72 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47843,37 +47816,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['selectedConversation'],
     data: function data() {
         return {
             open: false,
-            conversation: true,
+            conversationView: true,
+            conversationId: null,
+            conversations: [],
             messages: []
         };
     },
     mounted: function mounted() {
-        console.log('Component mounted.');
-        this.getMessages();
+        this.conversationId = this.selectedConversation;
+        this.getConversations();
+        if (this.conversationId) this.getMessages();
     },
 
     methods: {
         getMessages: function getMessages() {
             var _this = this;
 
-            axios.get('/api/messages').then(function (response) {
+            axios.get('/api/messages/' + this.conversationId).then(function (response) {
                 _this.messages = response.data;
+                _this.scrollDown();
             });
+        },
+        getConversations: function getConversations() {
+            var _this2 = this;
+
+            axios.get('/api/conversations').then(function (response) {
+                _this2.conversations = response.data;
+            });
+        },
+        selectConversation: function selectConversation(item) {
+            this.conversationId = item;
+            this.getMessages();
+            this.conversationView = !this.conversationView;
+        },
+        scrollDown: function scrollDown() {
+            var msgWindow = $('#message-window');
+            msgWindow.scrollTop(1000000);
+            console.log('scrolling down');
         }
     }
 });
 
 /***/ }),
-/* 73 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47942,136 +47933,70 @@ var render = function() {
               { staticClass: "chat-window chat-shadow" },
               [
                 _c("transition", { attrs: { name: "slide-right" } }, [
-                  _vm.conversation
+                  _vm.conversationView
                     ? _c(
                         "div",
-                        {
-                          staticClass: "conversation-window",
-                          on: {
-                            click: function($event) {
-                              _vm.conversation = !_vm.conversation
-                            }
-                          }
-                        },
-                        _vm._l(_vm.messages, function(message) {
-                          return _c("p", { class: { sent: message.sent } }, [
-                            _vm._v(_vm._s(message.text))
-                          ])
+                        { staticClass: "conversation-window" },
+                        _vm._l(_vm.conversations, function(conversation) {
+                          return _c(
+                            "p",
+                            {
+                              staticClass: "conversation-item",
+                              on: {
+                                click: function($event) {
+                                  _vm.selectConversation(conversation.id)
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(conversation.number))]
+                          )
                         })
                       )
                     : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("transition", { attrs: { name: "slide-left" } }, [
-                  !_vm.conversation
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "message-window",
-                          on: {
-                            click: function($event) {
-                              _vm.conversation = !_vm.conversation
+                  !_vm.conversationView
+                    ? _c("div", [
+                        _c("div", { staticClass: "message-header" }, [
+                          _c("i", {
+                            staticClass:
+                              "fas fa-lg fa-angle-left mr-2 back-arrow",
+                            on: {
+                              click: function($event) {
+                                _vm.conversationView = !_vm.conversationView
+                              }
                             }
-                          }
-                        },
-                        [
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
-                            )
-                          ])
-                        ]
-                      )
+                          }),
+                          _vm._v(
+                            "\n                        Conversation with: "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "message-window",
+                            attrs: { id: "message-window" }
+                          },
+                          _vm._l(_vm.messages, function(message) {
+                            return _c("p", { class: { sent: message.sent } }, [
+                              _vm._v(_vm._s(message.text))
+                            ])
+                          })
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "message-footer" }, [
+                          _c("input", {
+                            staticClass: "form-control chat-message",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Enter message..."
+                            },
+                            on: { click: _vm.scrollDown }
+                          })
+                        ])
+                      ])
                     : _vm._e()
                 ])
               ],
@@ -48092,6 +48017,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-0d66c37a", module.exports)
   }
 }
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

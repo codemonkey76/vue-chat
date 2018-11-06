@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Conversation;
-use App\SmsMessage;
 use Illuminate\Http\Request;
 
-class SmsMessageController extends Controller
+class ConversationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Conversation $conversation)
+    public function index()
     {
-        return $conversation->messages;
+//        return Conversation::all();
+        return Conversation::take(5)->get();
     }
 
     /**
@@ -42,10 +42,10 @@ class SmsMessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SmsMessage  $smsMessage
+     * @param  \App\Conversation  $conversation
      * @return \Illuminate\Http\Response
      */
-    public function show(SmsMessage $smsMessage)
+    public function show(Conversation $conversation)
     {
         //
     }
@@ -53,10 +53,10 @@ class SmsMessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SmsMessage  $smsMessage
+     * @param  \App\Conversation  $conversation
      * @return \Illuminate\Http\Response
      */
-    public function edit(SmsMessage $smsMessage)
+    public function edit(Conversation $conversation)
     {
         //
     }
@@ -65,10 +65,10 @@ class SmsMessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SmsMessage  $smsMessage
+     * @param  \App\Conversation  $conversation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SmsMessage $smsMessage)
+    public function update(Request $request, Conversation $conversation)
     {
         //
     }
@@ -76,10 +76,10 @@ class SmsMessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SmsMessage  $smsMessage
+     * @param  \App\Conversation  $conversation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SmsMessage $smsMessage)
+    public function destroy(Conversation $conversation)
     {
         //
     }
