@@ -16,7 +16,7 @@
                 </span>
             </div>
         </transition>
-        <transition name="rollup">
+        <transition name="slide-left">
             <div v-if="open" class="chat-window chat-shadow">
                 <transition name="slide-right">
                     <div v-if="conversationView" class="conversation-window">
@@ -26,16 +26,20 @@
                 </transition>
                 <transition name="slide-left">
                     <div v-if="! conversationView">
-                        <div class="message-header">
-                            <i @click="conversationView=!conversationView"
-                               class="fas fa-lg fa-angle-left mr-2 back-arrow"></i>
-                            Conversation with: </div>
-                        <div id="message-window" class="message-window">
-                            <p v-for="message in messages"
-                               :class="{sent: message.sent}">{{ message.text }}</p>
-                        </div>
-                        <div class="message-footer">
-                            <input @click="scrollDown" type="text" class="form-control chat-message" placeholder="Enter message...">
+                        <div class="message-window">
+                            <div class="message-header">
+                                <i @click="conversationView=!conversationView"
+                                   class="fas fa-lg fa-angle-left mr-2 back-arrow"></i>
+                                Conversation with:
+                            </div>
+                            <div id="message-window" class="message-body">
+                                <p v-for="message in messages"
+                                   :class="{sent: message.sent}">{{ message.text }}</p>
+                            </div>
+                            <div class="message-footer">
+                                <input @click="scrollDown" type="text" class="form-control chat-message"
+                                       placeholder="Enter message...">
+                            </div>
                         </div>
                     </div>
                 </transition>
@@ -91,6 +95,7 @@
     .chat-message {
         border-radius: 0 0 1em 1em;
     }
+
     .back-arrow {
         cursor: pointer;
     }
@@ -105,14 +110,21 @@
     .conversation-item {
         cursor: pointer;
     }
+    .message-body {
+        padding:20px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        height:501px;
+    }
 
     .message-window {
-        padding: 20px;
+        /*padding: 20px;*/
         left: 0;
         background: rgba(255, 255, 255, 1);
         width: 100%;
-        height: 501px;
-        overflow-y: auto;
+        /*height: 501px;*/
+        /*overflow-y: auto;*/
+        border-radius:1em;
     }
 
     .conversation-window {
@@ -123,10 +135,10 @@
         background: rgba(255, 255, 255, 1);
         width: 100%;
         min-height: 100%;
-        border-radius:1em;
+        border-radius: 1em;
     }
 
-    .message-window > p.sent {
+    .message-body > p.sent {
         color: white;
         background: #aae;
         border-radius: 0.5em;
@@ -134,7 +146,7 @@
         margin-left: 30px;
     }
 
-    .conversation-window > p, .message-window > p:not(.sent) {
+    .conversation-window > p, .message-body > p:not(.sent) {
         color: black;
         background: rgb(245, 245, 245);
         border-radius: 0.5em;
@@ -156,6 +168,7 @@
         max-height: 600px;
         background: #ddd;
         border-radius: 1em;
+        overflow:hidden;
     }
 
     .slide-right-enter-active, .slide-right-leave-active,

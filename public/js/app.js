@@ -47307,7 +47307,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-window {\n    padding: 20px;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    height: 501px;\n    overflow-y: auto;\n}\n.conversation-window {\n    position: absolute;\n    padding: 20px;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius:1em;\n}\n.message-window > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-window > p, .message-window > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-body {\n    padding:20px;\n    overflow-y:auto;\n    overflow-x:hidden;\n    height:501px;\n}\n.message-window {\n    /*padding: 20px;*/\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    /*height: 501px;*/\n    /*overflow-y: auto;*/\n    border-radius:1em;\n}\n.conversation-window {\n    position: absolute;\n    padding: 20px;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius: 1em;\n}\n.message-body > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-window > p, .message-body > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n    overflow:hidden;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -47816,6 +47816,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['selectedConversation'],
@@ -47926,7 +47930,7 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("transition", { attrs: { name: "rollup" } }, [
+      _c("transition", { attrs: { name: "slide-left" } }, [
         _vm.open
           ? _c(
               "div",
@@ -47958,43 +47962,47 @@ var render = function() {
                 _c("transition", { attrs: { name: "slide-left" } }, [
                   !_vm.conversationView
                     ? _c("div", [
-                        _c("div", { staticClass: "message-header" }, [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-lg fa-angle-left mr-2 back-arrow",
-                            on: {
-                              click: function($event) {
-                                _vm.conversationView = !_vm.conversationView
+                        _c("div", { staticClass: "message-window" }, [
+                          _c("div", { staticClass: "message-header" }, [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-lg fa-angle-left mr-2 back-arrow",
+                              on: {
+                                click: function($event) {
+                                  _vm.conversationView = !_vm.conversationView
+                                }
                               }
-                            }
-                          }),
-                          _vm._v(
-                            "\n                        Conversation with: "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "message-window",
-                            attrs: { id: "message-window" }
-                          },
-                          _vm._l(_vm.messages, function(message) {
-                            return _c("p", { class: { sent: message.sent } }, [
-                              _vm._v(_vm._s(message.text))
-                            ])
-                          })
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "message-footer" }, [
-                          _c("input", {
-                            staticClass: "form-control chat-message",
-                            attrs: {
-                              type: "text",
-                              placeholder: "Enter message..."
+                            }),
+                            _vm._v(
+                              "\n                            Conversation with:\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "message-body",
+                              attrs: { id: "message-window" }
                             },
-                            on: { click: _vm.scrollDown }
-                          })
+                            _vm._l(_vm.messages, function(message) {
+                              return _c(
+                                "p",
+                                { class: { sent: message.sent } },
+                                [_vm._v(_vm._s(message.text))]
+                              )
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "message-footer" }, [
+                            _c("input", {
+                              staticClass: "form-control chat-message",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Enter message..."
+                              },
+                              on: { click: _vm.scrollDown }
+                            })
+                          ])
                         ])
                       ])
                     : _vm._e()
