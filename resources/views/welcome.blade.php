@@ -20,5 +20,5 @@
             </div>
         </div>
     </div>
-    <example-component></example-component>
+    <chat></chat>
 @endsection

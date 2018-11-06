@@ -13879,7 +13879,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(43);
+module.exports = __webpack_require__(48);
 
 
 /***/ }),
@@ -13905,13 +13905,14 @@ window.Vue = __webpack_require__(36);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', __webpack_require__(39));
+// import Chat from './components/chat';
+// Vue.component('chat', Chat);
 
-// const files = require.context('./', true, /\.vue$/i)
+var files = __webpack_require__(68);
 
-// files.keys().map(key => {
-//     return Vue.component(_.last(key.split('/')).split('.')[0], files(key))
-// })
+files.keys().map(function (key) {
+  return Vue.component(_.last(key.split('/')).split('.')[0], files(key));
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -47195,405 +47196,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(64)
-}
-var normalizeComponent = __webpack_require__(40)
-/* script */
-var __vue_script__ = __webpack_require__(41)
-/* template */
-var __vue_template__ = __webpack_require__(42)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/ExampleComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-299e239e", Component.options)
-  } else {
-    hotAPI.reload("data-v-299e239e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            open: false
-        };
-    },
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
+/* 39 */,
+/* 40 */,
+/* 41 */,
 /* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("transition", { attrs: { name: "spin" } }, [
-        !_vm.open
-          ? _c(
-              "div",
-              {
-                staticClass: "chat-bubble bubble-shadow",
-                on: {
-                  click: function($event) {
-                    _vm.open = !_vm.open
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
-                  _c("i", {
-                    staticClass: "fa fa-circle fa-stack-2x chat-color"
-                  }),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "fa fa-comment fa-stack-1x fa-inverse"
-                  })
-                ])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("transition", { attrs: { name: "fade" } }, [
-        _vm.open
-          ? _c(
-              "div",
-              {
-                staticClass: "chat-bubble",
-                on: {
-                  click: function($event) {
-                    _vm.open = !_vm.open
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
-                  _c("i", {
-                    staticClass: "fa fa-circle fa-stack-2x chat-color"
-                  }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-times fa-stack-1x fa-inverse" })
-                ])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("transition", { attrs: { name: "rollup" } }, [
-        _vm.open
-          ? _c("div", { staticClass: "chat-window chat-shadow" }, [
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eum iusto laudantium modi sequi tenetur vero? Adipisci aliquid cum distinctio dolorum facilis, magni maiores necessitatibus nisi quaerat rem vel velit"
-                )
-              ])
-            ])
-          : _vm._e()
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-299e239e", module.exports)
-  }
-}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 44 */,
-/* 45 */,
-/* 46 */
 /***/ (function(module, exports) {
 
 /*
@@ -47675,64 +47281,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(65);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(66)("b181d908", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-299e239e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ExampleComponent.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-299e239e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ExampleComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(46)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position:fixed;\n    bottom:100px;\n    right: 25px;\n    min-width: 400px;\n    min-height:700px;\n    max-width:400px;\n    max-height:700px;\n    background:#ddd;\n    border-radius: 1em;\n    padding:20px;\n    overflow-y:scroll;\n}\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 66 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -47751,7 +47300,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(67)
+var listToStyles = __webpack_require__(44)
 
 /*
 type StyleObject = {
@@ -47960,7 +47509,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 67 */
+/* 44 */
 /***/ (function(module, exports) {
 
 /**
@@ -47991,6 +47540,558 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/Chat.vue": 69
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 68;
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(70)
+}
+var normalizeComponent = __webpack_require__(45)
+/* script */
+var __vue_script__ = __webpack_require__(72)
+/* template */
+var __vue_template__ = __webpack_require__(73)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0d66c37a", Component.options)
+  } else {
+    hotAPI.reload("data-v-0d66c37a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(71);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(43)("6566cf6a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0d66c37a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(42)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.message-window {\n    position:absolute;\n    padding:20px;\n    top:0;\n    left:0;\n}\n.conversation-window {\n    position:absolute;\n    padding:20px;\n    top:0;\n    left:0;\n}\n.conversation-window > p.sent {\n    color:red;\n}\n.conversation-window {\n    background: rgba(255, 255, 200, 0.5)\n}\n.message-window {\n    background: rgba(255, 200, 255, 0.5)\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position:fixed;\n    bottom:100px;\n    right: 25px;\n    min-width: 400px;\n    min-height:700px;\n    max-width:400px;\n    max-height:700px;\n    background:#ddd;\n    border-radius: 1em;\n    padding:20px;\n    overflow-y:scroll;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform:translateX(100%);\n            transform:translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform:translateX(-100%);\n            transform:translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            open: false,
+            conversation: true,
+            messages: []
+        };
+    },
+    mounted: function mounted() {
+        console.log('Component mounted.');
+        this.getMessages();
+    },
+
+    methods: {
+        getMessages: function getMessages() {
+            var _this = this;
+
+            axios.get('/api/messages').then(function (response) {
+                _this.messages = response.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("transition", { attrs: { name: "spin" } }, [
+        !_vm.open
+          ? _c(
+              "div",
+              {
+                staticClass: "chat-bubble bubble-shadow",
+                on: {
+                  click: function($event) {
+                    _vm.open = !_vm.open
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
+                  _c("i", {
+                    staticClass: "fa fa-circle fa-stack-2x chat-color"
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-comment fa-stack-1x fa-inverse"
+                  })
+                ])
+              ]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "spin" } }, [
+        _vm.open
+          ? _c(
+              "div",
+              {
+                staticClass: "chat-bubble",
+                on: {
+                  click: function($event) {
+                    _vm.open = !_vm.open
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
+                  _c("i", {
+                    staticClass: "fa fa-circle fa-stack-2x chat-color"
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "fa fa-times fa-stack-1x fa-inverse" })
+                ])
+              ]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "rollup" } }, [
+        _vm.open
+          ? _c(
+              "div",
+              { staticClass: "chat-window chat-shadow" },
+              [
+                _c("transition", { attrs: { name: "slide-right" } }, [
+                  _vm.conversation
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "conversation-window",
+                          on: {
+                            click: function($event) {
+                              _vm.conversation = !_vm.conversation
+                            }
+                          }
+                        },
+                        _vm._l(_vm.messages, function(message) {
+                          return _c("p", { class: { sent: message.sent } }, [
+                            _vm._v(_vm._s(message.text))
+                          ])
+                        })
+                      )
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "slide-left" } }, [
+                  !_vm.conversation
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "message-window",
+                          on: {
+                            click: function($event) {
+                              _vm.conversation = !_vm.conversation
+                            }
+                          }
+                        },
+                        [
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "message window message window message window message window message window message window message window message window message window message window message window message window message window message window"
+                            )
+                          ])
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0d66c37a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
