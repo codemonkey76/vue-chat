@@ -47283,7 +47283,7 @@ var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(44)("74bc32d2", content, false, {});
+var update = __webpack_require__(44)("6566cf6a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -47307,7 +47307,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-body {\n    padding:20px;\n    overflow-y:auto;\n    overflow-x:hidden;\n    height:501px;\n}\n.message-window {\n    /*padding: 20px;*/\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    /*height: 501px;*/\n    /*overflow-y: auto;*/\n    border-radius:1em;\n}\n.conversation-window {\n    position: absolute;\n    padding: 20px;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius: 1em;\n}\n.message-body > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-window > p, .message-body > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n    overflow:hidden;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-body {\n    padding:20px;\n    overflow-y:auto;\n    overflow-x:hidden;\n    height: calc(100vh - 225px);\n}\n.message-window {\n    /*padding: 20px;*/\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    /*height: 501px;*/\n    /*overflow-y: auto;*/\n    border-radius:1em;\n}\n.conversation-window {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    min-height: 100%;\n    border-radius: 1em;\n    padding: 20px;\n    background: rgba(255, 255, 255, 1);\n}\n.conversation-body {\n}\n.message-body > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-body > p, .message-body > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: calc(100vh - 125px);\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n    overflow:hidden;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -47820,6 +47820,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['selectedConversation'],
@@ -47858,6 +47865,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.conversationId = item;
             this.getMessages();
             this.conversationView = !this.conversationView;
+        },
+        getConversationTitle: function getConversationTitle() {
+            var _this3 = this;
+
+            if (this.conversationId) {
+                return this.conversations.filter(function (c) {
+                    return c.id === _this3.conversationId;
+                })[0].number;
+            }
+            return "";
         },
         scrollDown: function scrollDown() {
             var msgWindow = $('#message-window');
@@ -47938,24 +47955,34 @@ var render = function() {
               [
                 _c("transition", { attrs: { name: "slide-right" } }, [
                   _vm.conversationView
-                    ? _c(
-                        "div",
-                        { staticClass: "conversation-window" },
-                        _vm._l(_vm.conversations, function(conversation) {
-                          return _c(
-                            "p",
-                            {
-                              staticClass: "conversation-item",
-                              on: {
-                                click: function($event) {
-                                  _vm.selectConversation(conversation.id)
-                                }
-                              }
-                            },
-                            [_vm._v(_vm._s(conversation.number))]
+                    ? _c("div", [
+                        _c("div", { staticClass: "conversation-window" }, [
+                          _c("div", { staticClass: "conversation-header" }, [
+                            _vm._v(
+                              "\n                            Conversations\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "conversation-body" },
+                            _vm._l(_vm.conversations, function(conversation) {
+                              return _c(
+                                "p",
+                                {
+                                  staticClass: "conversation-item",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.selectConversation(conversation.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(conversation.number))]
+                              )
+                            })
                           )
-                        })
-                      )
+                        ])
+                      ])
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -47974,7 +48001,9 @@ var render = function() {
                               }
                             }),
                             _vm._v(
-                              "\n                            Conversation with:\n                        "
+                              "\n                            Conversation with: " +
+                                _vm._s(_vm.getConversationTitle()) +
+                                "\n                        "
                             )
                           ]),
                           _vm._v(" "),

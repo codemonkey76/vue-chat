@@ -19,9 +19,16 @@
         <transition name="slide-left">
             <div v-if="open" class="chat-window chat-shadow">
                 <transition name="slide-right">
-                    <div v-if="conversationView" class="conversation-window">
-                        <p class="conversation-item" v-for="conversation in conversations"
-                           @click="selectConversation(conversation.id)">{{ conversation.number }}</p>
+                    <div v-if="conversationView">
+                        <div class="conversation-window">
+                            <div class="conversation-header">
+                                Conversations
+                            </div>
+                            <div class="conversation-body">
+                                <p class="conversation-item" v-for="conversation in conversations"
+                                @click="selectConversation(conversation.id)">{{ conversation.number }}</p>
+                            </div>
+                        </div>
                     </div>
                 </transition>
                 <transition name="slide-left">
@@ -30,7 +37,7 @@
                             <div class="message-header">
                                 <i @click="conversationView=!conversationView"
                                    class="fas fa-lg fa-angle-left mr-2 back-arrow"></i>
-                                Conversation with:
+                                Conversation with: {{getConversationTitle()}}
                             </div>
                             <div id="message-window" class="message-body">
                                 <p v-for="message in messages"
@@ -83,6 +90,14 @@
                 this.getMessages();
                 this.conversationView = !this.conversationView;
             },
+            getConversationTitle() {
+                if (this.conversationId) {
+                    return this.conversations.filter(c => {
+                       return c.id === this.conversationId;
+                    })[0].number;
+                }
+                return "";
+            },
             scrollDown() {
                 let msgWindow = $('#message-window');
                 msgWindow.scrollTop(1000000);
@@ -106,7 +121,12 @@
         border-radius: 1em 1em 0 0 !important;
         padding: 20px !important;
     }
-
+    .conversation-header {
+        background: #aae !important;
+        font-weight: 600;
+        border-radius: 1em 1em 0 0 !important;
+        padding: 20px !important;
+    }
     .conversation-item {
         cursor: pointer;
     }
@@ -114,7 +134,7 @@
         padding:20px;
         overflow-y:auto;
         overflow-x:hidden;
-        height:501px;
+        height: calc(100vh - 225px);
     }
 
     .message-window {
@@ -129,13 +149,17 @@
 
     .conversation-window {
         position: absolute;
-        padding: 20px;
         top: 0;
         left: 0;
-        background: rgba(255, 255, 255, 1);
         width: 100%;
         min-height: 100%;
         border-radius: 1em;
+        padding: 20px;
+        background: rgba(255, 255, 255, 1);
+
+    }
+    .conversation-body {
+
     }
 
     .message-body > p.sent {
@@ -146,7 +170,7 @@
         margin-left: 30px;
     }
 
-    .conversation-window > p, .message-body > p:not(.sent) {
+    .conversation-body > p, .message-body > p:not(.sent) {
         color: black;
         background: rgb(245, 245, 245);
         border-radius: 0.5em;
@@ -163,7 +187,7 @@
         bottom: 100px;
         right: 25px;
         min-width: 400px;
-        min-height: 600px;
+        min-height: calc(100vh - 125px);
         max-width: 400px;
         max-height: 600px;
         background: #ddd;
