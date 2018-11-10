@@ -19,6 +19,8 @@ window.Vue = require('vue');
 
 // import Chat from './components/chat';
 // Vue.component('chat', Chat);
+import Chat from './components/Chat';
+Vue.component('chat', Chat);
 
 const files = require.context('./', true, /\.vue$/i);
 

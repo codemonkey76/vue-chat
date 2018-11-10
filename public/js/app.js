@@ -13884,8 +13884,12 @@ module.exports = __webpack_require__(49);
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Chat__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Chat__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13907,6 +13911,8 @@ window.Vue = __webpack_require__(36);
 
 // import Chat from './components/chat';
 // Vue.component('chat', Chat);
+
+Vue.component('chat', __WEBPACK_IMPORTED_MODULE_0__components_Chat___default.a);
 
 var files = __webpack_require__(39);
 
@@ -47203,7 +47209,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./components/Chat.vue": 40
+	"./components/Chat.vue": 40,
+	"./components/orig_Chat.vue": 74
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -47307,7 +47314,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n.chat-message {\n    border-radius: 0 0 1em 1em;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-body {\n    padding:20px;\n    overflow-y:auto;\n    overflow-x:hidden;\n    height:501px;\n}\n.message-window {\n    /*padding: 20px;*/\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    /*height: 501px;*/\n    /*overflow-y: auto;*/\n    border-radius:1em;\n}\n.conversation-window {\n    position: absolute;\n    padding: 20px;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius: 1em;\n}\n.message-body > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-window > p, .message-body > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n    overflow:hidden;\n}\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.fade-enter-active, .fade-leave-active,\n.spin-enter-active, .spin-leave-active,\n.rollup-enter-active, .rollup-leave-active {\n    -webkit-transition: all 750ms ease-in-out;\n    transition: all 750ms ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n.rollup-enter, .rollup-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.wrapper {\n    left:auto;\n    position: fixed;\n    right: 25px;\n    bottom: 100px;\n    width: 300px;\n    height: 600px;\n    overflow: hidden;\n    border-radius: 2em;\n    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15) !important;\n            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15) !important;\n}\n.chat-window {\n    position: absolute;\n    width: 900px;\n    height: 600px;\n    background: #aee;\n    -webkit-transition: all .3s;\n    transition: all .3s;\n    border-radius: 2em;\n}\n.right {\n    -webkit-transform: translateX(-600px);\n            transform: translateX(-600px);\n}\n.middle {\n    -webkit-transform: translateX(-300px);\n            transform: translateX(-300px);\n}\n.new-conversation, .conversation-window, .message-window {\n    position: absolute;\n    top: 0;\n    width: 300px;\n    height: 600px;\n    border-radius: 2em;\n}\n.new-conversation {\n    background: #eaa;\n    left: 0;\n}\n.conversation-window {\n    background: #aea;\n    left: 300px;\n}\n.message-window {\n    background: #aae;\n    left: 600px;\n}\n.chat-bubble {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n}\n.spin-enter-active, .spin-leave-active,\n.slide-enter-active, .slide-leave-active {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.slide-enter, .slide-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n    opacity:0;\n}\n\n", ""]);
 
 // exports
 
@@ -47810,6 +47817,371 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            visible: false,
+            page: 2
+        };
+    },
+
+    methods: {
+        nextPage: function nextPage() {
+            if (this.page < 3) {
+                this.page++;
+            }
+        },
+        prevPage: function prevPage() {
+            if (this.page > 1) {
+                this.page--;
+            }
+        }
+    },
+    computed: {
+        getClass: function getClass() {
+            if (this.page === 1) {
+                return 'left';
+            } else if (this.page === 2) {
+                return 'middle';
+            } else {
+                return 'right';
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              _vm.prevPage()
+            }
+          }
+        },
+        [_vm._v("Left")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              _vm.nextPage()
+            }
+          }
+        },
+        [_vm._v("Right")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              _vm.visible = !_vm.visible
+            }
+          }
+        },
+        [_vm._v("Toggle")]
+      ),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "spin" } }, [
+        !_vm.visible
+          ? _c(
+              "div",
+              {
+                staticClass: "chat-bubble",
+                on: {
+                  click: function($event) {
+                    _vm.visible = !_vm.visible
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
+                  _c("i", {
+                    staticClass: "fa fa-circle fa-stack-2x chat-color"
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-comment fa-stack-1x fa-inverse"
+                  })
+                ])
+              ]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "spin" } }, [
+        _vm.visible
+          ? _c(
+              "div",
+              {
+                staticClass: "chat-bubble",
+                on: {
+                  click: function($event) {
+                    _vm.visible = !_vm.visible
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
+                  _c("i", {
+                    staticClass: "fa fa-circle fa-stack-2x chat-color"
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "fa fa-times fa-stack-1x fa-inverse" })
+                ])
+              ]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "slide" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
+              }
+            ]
+          },
+          [
+            _c("div", { staticClass: "wrapper shadow" }, [
+              _c("div", { staticClass: "chat-window", class: _vm.getClass }, [
+                _c("div", { staticClass: "new-conversation" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "conversation-window" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "message-window" })
+              ])
+            ])
+          ]
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0d66c37a", module.exports)
+  }
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(75)
+}
+var normalizeComponent = __webpack_require__(46)
+/* script */
+var __vue_script__ = __webpack_require__(77)
+/* template */
+var __vue_template__ = __webpack_require__(78)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/orig_Chat.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-df64fc0a", Component.options)
+  } else {
+    hotAPI.reload("data-v-df64fc0a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(76);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(44)("2debf7db", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-df64fc0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./orig_Chat.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-df64fc0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./orig_Chat.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(43)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.front {\n    z-index: 1000;\n}\n.chat-message {\n    border-radius: 0 0 1em 1em;\n    height: 90px;\n    resize: none;\n}\n.back-arrow {\n    cursor: pointer;\n}\n.message-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-header {\n    background: #aae !important;\n    font-weight: 600;\n    border-radius: 1em 1em 0 0 !important;\n    padding: 20px !important;\n}\n.conversation-item {\n    cursor: pointer;\n}\n.message-body {\n    height: 455px;\n}\n.conversation-body {\n    height: 480px;\n    background:white;\n}\n.conversation-body, .message-body {\n    padding: 20px;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\n.message-window {\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    border-radius: 1em;\n}\n.conversation-footer {\n    padding: 10px;\n    border-radius: 0 0 1em 1em;\n    text-align: center;\n    background: #aae;\n}\n.conversation-window {\n    position: absolute;\n    top: 0;\n    left: 0;\n    background: rgba(255, 255, 255, 1);\n    width: 100%;\n    min-height: 100%;\n    border-radius: 1em;\n}\n.message-body > p.sent {\n    color: white;\n    background: #aae;\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-left: 30px;\n}\n.conversation-body > p, .message-body > p:not(.sent) {\n    color: black;\n    background: rgb(245, 245, 245);\n    border-radius: 0.5em;\n    padding: 8px;\n    margin-right: 30px;\n}\n.chat-shadow {\n    -webkit-box-shadow: 5px 5px 10px #aaa;\n            box-shadow: 5px 5px 10px #aaa;\n}\n.chat-window {\n    position: fixed;\n    bottom: 100px;\n    right: 25px;\n    min-width: 400px;\n    min-height: 600px;\n    max-width: 400px;\n    max-height: 600px;\n    background: #ddd;\n    border-radius: 1em;\n    overflow: hidden;\n}\n.slide-down-enter-active, .slide-down-leave-active,\n.slide-up-enter-active, .slide-up-leave-active,\n.slide-right-enter-active, .slide-right-leave-active,\n.slide-left-enter-active, .slide-left-leave-active,\n.spin-enter-active, .spin-leave-active {\n    -webkit-transition: all 4s ease-in-out;\n    transition: all 4s ease-in-out;\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(720deg);\n            transform: rotate(720deg);\n}\n.slide-up-enter, .slide-up-leave-to {\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%);\n}\n.slide-down-enter, .slide-down-leave-to {\n    -webkit-transform: translateY(100%);\n            transform: translateY(100%);\n}\n.slide-left-enter, .slide-left-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.slide-right-enter, .slide-right-leave-to {\n    -webkit-transform: translateX(-100%);\n            transform: translateX(-100%);\n}\n.chat-color {\n    color: #aae;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47827,9 +48199,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             open: false,
             conversationView: true,
+            newConversation: false,
             conversationId: null,
             conversations: [],
-            messages: []
+            messages: [],
+            message: ''
         };
     },
     mounted: function mounted() {
@@ -47839,6 +48213,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        validateMessage: function validateMessage(e) {
+            if (e.keyCode === 13) {
+                if (!e.shiftKey) {
+                    alert('Send message: ' + this.message);
+                    this.message = '';
+                }
+            }
+        },
         getMessages: function getMessages() {
             var _this = this;
 
@@ -47860,7 +48242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.conversationView = !this.conversationView;
         },
         scrollDown: function scrollDown() {
-            var msgWindow = $('#message-window');
+            var msgWindow = $('#message-body');
             msgWindow.scrollTop(1000000);
             console.log('scrolling down');
         }
@@ -47868,7 +48250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 48 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47878,84 +48260,114 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("transition", { attrs: { name: "spin" } }, [
-        !_vm.open
-          ? _c(
-              "div",
-              {
-                staticClass: "chat-bubble bubble-shadow",
-                on: {
-                  click: function($event) {
-                    _vm.open = !_vm.open
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
-                  _c("i", {
-                    staticClass: "fa fa-circle fa-stack-2x chat-color"
-                  }),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "fa fa-comment fa-stack-1x fa-inverse"
-                  })
-                ])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("transition", { attrs: { name: "spin" } }, [
-        _vm.open
-          ? _c(
-              "div",
-              {
-                staticClass: "chat-bubble",
-                on: {
-                  click: function($event) {
-                    _vm.open = !_vm.open
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "fa-stack fa-2x fa-lg" }, [
-                  _c("i", {
-                    staticClass: "fa fa-circle fa-stack-2x chat-color"
-                  }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fa fa-times fa-stack-1x fa-inverse" })
-                ])
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
       _c("transition", { attrs: { name: "slide-left" } }, [
         _vm.open
           ? _c(
               "div",
               { staticClass: "chat-window chat-shadow" },
               [
+                _c("transition", { attrs: { name: "slide-up" } }),
+                _vm._v(" "),
                 _c("transition", { attrs: { name: "slide-right" } }, [
                   _vm.conversationView
-                    ? _c(
-                        "div",
-                        { staticClass: "conversation-window" },
-                        _vm._l(_vm.conversations, function(conversation) {
-                          return _c(
-                            "p",
-                            {
-                              staticClass: "conversation-item",
-                              on: {
-                                click: function($event) {
-                                  _vm.selectConversation(conversation.id)
-                                }
-                              }
-                            },
-                            [_vm._v(_vm._s(conversation.number))]
-                          )
-                        })
-                      )
+                    ? _c("div", [
+                        _c("div", { staticClass: "conversation-window" }, [
+                          _c("div", { staticClass: "conversation-header" }, [
+                            _vm._v(
+                              "\n                            Conversations\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          !_vm.newConversation
+                            ? _c("div", [
+                                _c(
+                                  "div",
+                                  { staticClass: "conversation-body" },
+                                  _vm._l(_vm.conversations, function(
+                                    conversation
+                                  ) {
+                                    return _c(
+                                      "p",
+                                      {
+                                        staticClass: "conversation-item",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.selectConversation(
+                                              conversation.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(conversation.number))]
+                                    )
+                                  })
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "conversation-footer" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.newConversation = !_vm.newConversation
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "New\n                                        Conversation\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.newConversation
+                            ? _c("div", [
+                                _c(
+                                  "div",
+                                  { staticClass: "conversation-body" },
+                                  [_vm._v("Body")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "conversation-footer" },
+                                  [
+                                    _c(
+                                      "button",
+                                      { staticClass: "btn btn-primary" },
+                                      [_vm._v("Create")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-secondary",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.newConversation = !_vm.newConversation
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Cancel\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ])
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -47982,7 +48394,7 @@ var render = function() {
                             "div",
                             {
                               staticClass: "message-body",
-                              attrs: { id: "message-window" }
+                              attrs: { id: "message-body" }
                             },
                             _vm._l(_vm.messages, function(message) {
                               return _c(
@@ -47994,13 +48406,31 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "message-footer" }, [
-                            _c("input", {
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.message,
+                                  expression: "message"
+                                }
+                              ],
                               staticClass: "form-control chat-message",
                               attrs: {
-                                type: "text",
-                                placeholder: "Enter message..."
+                                placeholder: "Enter message...",
+                                rows: "3"
                               },
-                              on: { click: _vm.scrollDown }
+                              domProps: { value: _vm.message },
+                              on: {
+                                click: _vm.scrollDown,
+                                keyup: _vm.validateMessage,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.message = $event.target.value
+                                }
+                              }
                             })
                           ])
                         ])
@@ -48022,15 +48452,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0d66c37a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-df64fc0a", module.exports)
   }
 }
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

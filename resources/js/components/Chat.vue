@@ -1,7 +1,10 @@
 <template>
     <div>
+        <button class="btn btn-primary" @click="prevPage()">Left</button>
+        <button class="btn btn-primary" @click="nextPage()">Right</button>
+        <button class="btn btn-primary" @click="visible = !visible">Toggle</button>
         <transition name="spin">
-            <div v-if="!open" class="chat-bubble bubble-shadow" @click="open=!open">
+            <div v-if="!visible" class="chat-bubble" @click="visible=!visible">
                 <span class="fa-stack fa-2x fa-lg">
                     <i class="fa fa-circle fa-stack-2x chat-color"></i>
                     <i class="fa fa-comment fa-stack-1x fa-inverse"></i>
@@ -9,204 +12,137 @@
             </div>
         </transition>
         <transition name="spin">
-            <div v-if="open" class="chat-bubble" @click="open=!open">
+            <div v-if="visible" class="chat-bubble" @click="visible=!visible">
                 <span class="fa-stack fa-2x fa-lg">
                     <i class="fa fa-circle fa-stack-2x chat-color"></i>
                     <i class="fa fa-times fa-stack-1x fa-inverse"></i>
                 </span>
             </div>
         </transition>
-        <transition name="slide-left">
-            <div v-if="open" class="chat-window chat-shadow">
-                <transition name="slide-right">
-                    <div v-if="conversationView" class="conversation-window">
-                        <p class="conversation-item" v-for="conversation in conversations"
-                           @click="selectConversation(conversation.id)">{{ conversation.number }}</p>
-                    </div>
-                </transition>
-                <transition name="slide-left">
-                    <div v-if="! conversationView">
+
+        <transition name="slide">
+            <div v-show="visible">
+                <div class="wrapper shadow">
+                    <div class="chat-window" :class="getClass">
+                        <div class="new-conversation">
+                        </div>
+
+                        <div class="conversation-window">
+                        </div>
+
                         <div class="message-window">
-                            <div class="message-header">
-                                <i @click="conversationView=!conversationView"
-                                   class="fas fa-lg fa-angle-left mr-2 back-arrow"></i>
-                                Conversation with:
-                            </div>
-                            <div id="message-window" class="message-body">
-                                <p v-for="message in messages"
-                                   :class="{sent: message.sent}">{{ message.text }}</p>
-                            </div>
-                            <div class="message-footer">
-                                <input @click="scrollDown" type="text" class="form-control chat-message"
-                                       placeholder="Enter message...">
-                            </div>
                         </div>
                     </div>
-                </transition>
+                </div>
             </div>
         </transition>
     </div>
 </template>
-
 <script>
     export default {
-        props: ['selectedConversation'],
         data() {
             return {
-                open: false,
-                conversationView: true,
-                conversationId: null,
-                conversations: [],
-                messages: []
+                visible: false,
+                page: 2
             }
         },
-        mounted() {
-            this.conversationId = this.selectedConversation;
-            this.getConversations();
-            if (this.conversationId)
-                this.getMessages();
-        },
         methods: {
-            getMessages() {
-                axios.get('/api/messages/' + this.conversationId).then(response => {
-                    this.messages = response.data;
-                    this.scrollDown();
-                })
+            nextPage() {
+                if (this.page < 3) {
+                    this.page++;
+                }
             },
-            getConversations() {
-                axios.get('/api/conversations').then(response => {
-                    this.conversations = response.data;
-                });
-            },
-            selectConversation(item) {
-                this.conversationId = item;
-                this.getMessages();
-                this.conversationView = !this.conversationView;
-            },
-            scrollDown() {
-                let msgWindow = $('#message-window');
-                msgWindow.scrollTop(1000000);
-                console.log('scrolling down');
+            prevPage() {
+                if (this.page > 1) {
+                    this.page--;
+                }
+            }
+        },
+        computed: {
+            getClass() {
+                if (this.page === 1) {
+                    return 'left';
+                } else if (this.page === 2) {
+                    return 'middle';
+                } else {
+                    return 'right';
+                }
             }
         }
     }
+
 </script>
 <style>
-    .chat-message {
-        border-radius: 0 0 1em 1em;
-    }
-
-    .back-arrow {
-        cursor: pointer;
-    }
-
-    .message-header {
-        background: #aae !important;
-        font-weight: 600;
-        border-radius: 1em 1em 0 0 !important;
-        padding: 20px !important;
-    }
-
-    .conversation-item {
-        cursor: pointer;
-    }
-    .message-body {
-        padding:20px;
-        overflow-y:auto;
-        overflow-x:hidden;
-        height:501px;
-    }
-
-    .message-window {
-        /*padding: 20px;*/
-        left: 0;
-        background: rgba(255, 255, 255, 1);
-        width: 100%;
-        /*height: 501px;*/
-        /*overflow-y: auto;*/
-        border-radius:1em;
-    }
-
-    .conversation-window {
-        position: absolute;
-        padding: 20px;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 1);
-        width: 100%;
-        min-height: 100%;
-        border-radius: 1em;
-    }
-
-    .message-body > p.sent {
-        color: white;
-        background: #aae;
-        border-radius: 0.5em;
-        padding: 8px;
-        margin-left: 30px;
-    }
-
-    .conversation-window > p, .message-body > p:not(.sent) {
-        color: black;
-        background: rgb(245, 245, 245);
-        border-radius: 0.5em;
-        padding: 8px;
-        margin-right: 30px;
-    }
-
-    .chat-shadow {
-        box-shadow: 5px 5px 10px #aaa;
+    .wrapper {
+        left:auto;
+        position: fixed;
+        right: 25px;
+        bottom: 100px;
+        width: 300px;
+        height: 600px;
+        overflow: hidden;
+        border-radius: 2em;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15) !important;
     }
 
     .chat-window {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        min-width: 400px;
-        min-height: 600px;
-        max-width: 400px;
-        max-height: 600px;
-        background: #ddd;
-        border-radius: 1em;
-        overflow:hidden;
+        position: absolute;
+        width: 900px;
+        height: 600px;
+        background: #aee;
+        transition: all .3s;
+        border-radius: 2em;
     }
 
-    .slide-right-enter-active, .slide-right-leave-active,
-    .slide-left-enter-active, .slide-left-leave-active,
-    .fade-enter-active, .fade-leave-active,
+    .right {
+        transform: translateX(-600px);
+    }
+
+    .middle {
+        transform: translateX(-300px);
+    }
+
+    .new-conversation, .conversation-window, .message-window {
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 600px;
+        border-radius: 2em;
+    }
+
+    .new-conversation {
+        background: #eaa;
+        left: 0;
+    }
+
+    .conversation-window {
+        background: #aea;
+        left: 300px;
+    }
+
+    .message-window {
+        background: #aae;
+        left: 600px;
+    }
+
+    .chat-bubble {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+    }
+
     .spin-enter-active, .spin-leave-active,
-    .rollup-enter-active, .rollup-leave-active {
-        transition: all 750ms ease-in-out;
+    .slide-enter-active, .slide-leave-active {
+        transition: all .5s ease-in-out;
     }
 
     .spin-enter, .spin-leave-to {
         transform: rotate(720deg);
     }
 
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-
-    .rollup-enter, .rollup-leave-to {
+    .slide-enter, .slide-leave-to {
         transform: translateX(100%);
+        opacity:0;
     }
 
-    .slide-left-enter, .slide-left-leave-to {
-        transform: translateX(100%);
-    }
-
-    .slide-right-enter, .slide-right-leave-to {
-        transform: translateX(-100%);
-    }
-
-    .chat-color {
-        color: #aae;
-    }
-
-    .chat-bubble {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        cursor: pointer;
-    }
 </style>

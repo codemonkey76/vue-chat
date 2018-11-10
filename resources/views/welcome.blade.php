@@ -20,5 +20,4 @@
             </div>
         </div>
     </div>
-    <chat :selected-conversation="conversationId"></chat>
 @endsection
