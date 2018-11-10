@@ -114,5 +114,17 @@
         transform:translateX(-600px);
     }
 
+    .slide-enter-active, .slide-leave-active,
+    .spin-enter-active, .spin-leave-active {
+        transition: all .5s ease-in-out;
+    }
+
+    .slide-enter, .slide-leave-to {
+        transform: translateX(100%);
+    }
+    .spin-enter, .spin-leave-to {
+        transform: rotate(360deg);
+    }
+
 
 </style>
