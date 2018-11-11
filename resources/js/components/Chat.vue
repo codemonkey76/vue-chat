@@ -22,7 +22,7 @@
         </transition>
 
         <transition name="slide">
-            <div v-if="visible">
+            <template v-if="visible">
                 <div class="wrapper">
                     <div class="chat-window" :class="getClass">
                         <div class="new-conversation">Page 1</div>
@@ -30,7 +30,7 @@
                         <div class="message-window">Page 3</div>
                     </div>
                 </div>
-            </div>
+            </template>
         </transition>
     </div>
 

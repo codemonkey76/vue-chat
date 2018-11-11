@@ -48391,27 +48391,36 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("transition", { attrs: { name: "slide" } }, [
-        _vm.visible
-          ? _c("div", [
-              _c("div", { staticClass: "wrapper" }, [
-                _c("div", { staticClass: "chat-window", class: _vm.getClass }, [
-                  _c("div", { staticClass: "new-conversation" }, [
-                    _vm._v("Page 1")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "conversation-window" }, [
-                    _vm._v("Page 2")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "message-window" }, [
-                    _vm._v("Page 3")
-                  ])
+      _c(
+        "transition",
+        { attrs: { name: "slide" } },
+        [
+          _vm.visible
+            ? [
+                _c("div", { staticClass: "wrapper" }, [
+                  _c(
+                    "div",
+                    { staticClass: "chat-window", class: _vm.getClass },
+                    [
+                      _c("div", { staticClass: "new-conversation" }, [
+                        _vm._v("Page 1")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "conversation-window" }, [
+                        _vm._v("Page 2")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "message-window" }, [
+                        _vm._v("Page 3")
+                      ])
+                    ]
+                  )
                 ])
-              ])
-            ])
-          : _vm._e()
-      ])
+              ]
+            : _vm._e()
+        ],
+        2
+      )
     ],
     1
   )
