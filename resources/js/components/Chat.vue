@@ -33,18 +33,27 @@
                         <div class="conversation-window">
                             <div class="conversation-header">Header</div>
                             <div class="conversation-body">
-                                <div v-for="conversation in conversations"
-                                     class="conversation"
-                                     @click="selectConversation(conversation.id)">
-                                    {{conversation.number}}
-                                </div>
+                                <template v-for="conversation in conversations">
+                                    <div class="d-flex">
+                                        <div class="col-1 d-flex align-items-center justify-content-center ellipsis"
+                                             @click="clickEllipsis(conversation.id)">
+                                            <i class="fas fa-ellipsis-h fa-lg"></i>
+                                        </div>
+                                        <div class="col conversation"
+                                             @click="selectConversation(conversation.id)">
+                                            {{conversation.number}}
+                                        </div>
+                                    </div>
+                                </template>
                             </div>
                             <div class="conversation-footer">Footer</div>
                         </div>
                         <div class="message-window">
                             <div class="message-header">Header</div>
                             <div class="message-body" id="message-body">
-                                <div v-for="message in messages" class="message">{{message.text}}</div>
+                                <div v-for="message in messages" class="message"
+                                     :class="{sent: message.sent, received: !message.sent}">{{message.text}}
+                                </div>
                             </div>
                             <div class="message-footer">Footer</div>
                         </div>
@@ -52,6 +61,12 @@
                 </div>
             </template>
         </transition>
+        <div class="menu-bubble" id="menu-bubble">
+            <div class="position-relative">
+                <div class="arrow-down"></div>
+                <div class="ellipsis-menu">Archive</div>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -74,6 +89,16 @@
                 this.getMessages();
         },
         methods: {
+            clickEllipsis(id) {
+                let elem = $(event.target);
+                console.log(elem);
+                if (! elem.hasClass('ellipsis')) {
+                    console.log('Selecting parent');
+                    elem = elem.parent();
+                }
+                console.log(elem.offset());
+                $('#menu-bubble').css({'top':elem.offset().top+16,'left':elem.offset().left+15, opacity:1});
+            },
             prevPage() {
                 if (this.page > 1) this.page--;
             },
@@ -118,34 +143,78 @@
 
 </script>
 <style>
+    .message.sent {
+        margin-left: 70px;
+        color: white;
+        background: rgb(0, 132, 255);
+    }
+
+    .message.received {
+        margin-right: 70px;
+        color: black;
+        background: rgb(241, 240, 240);
+    }
+
+    .ellipsis {
+        cursor: pointer;
+        margin:10px;
+    }
+
+    .menu-bubble {
+        position:absolute;
+        opacity:0;
+        transition: opacity .4s ease-in-out;
+    }
+
+    .ellipsis-menu {
+        left: -31px;
+        position: absolute;
+        background: black;
+        color: white;
+        border-radius: 1em;
+        padding: 5px 10px 5px 10px;
+        top: -47px;
+    }
+
+    .arrow-down {
+        left: -10px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #000;
+        top: -15px;
+    }
+
     .conversation-body {
 
     }
 
-    .conversation-footer,.message-footer, .new-conversation-footer {
-        padding:20px;
+    .conversation-footer, .message-footer, .new-conversation-footer {
+        padding: 20px;
         background: #ccc;
     }
 
     .conversation-header, .message-header, .new-conversation-header {
-        padding:20px;
+        padding: 20px;
         background: #ccc;
     }
 
     .conversation {
         background: #cca;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin: 10px;
         border-radius: 1em;
         cursor: pointer;
         padding: 5px 20px;
     }
 
-    .message-body, .conversation-body {
+    .message-body, .conversation-body, .new-conversation-body {
         overflow-y: auto;
         height: calc(100vh - 307px);
         overflow-x: hidden;
     }
+
     .message {
         background: #cca;
         margin: 10px;
@@ -153,10 +222,12 @@
         cursor: pointer;
         padding: 5px 20px;
     }
+
     .chat-bubble {
         position: fixed;
         bottom: 25px;
         right: 25px;
+        cursor: pointer;
     }
 
     .chat-window {
@@ -185,7 +256,7 @@
         width: 300px;
         height: 100%;
         position: absolute;
-        border-radius: 2em;
+        /*border-radius: 2em;*/
     }
 
     .new-conversation {

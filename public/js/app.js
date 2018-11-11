@@ -48224,7 +48224,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n.conversation-body {\n}\n.conversation-footer,.message-footer, .new-conversation-footer {\n    padding:20px;\n    background: #ccc;\n}\n.conversation-header, .message-header, .new-conversation-header {\n    padding:20px;\n    background: #ccc;\n}\n.conversation {\n    background: #cca;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.message-body, .conversation-body {\n    overflow-y: auto;\n    height: calc(100vh - 307px);\n    overflow-x: hidden;\n}\n.message {\n    background: #cca;\n    margin: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n}\n.chat-window {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n    border-radius: 2em;\n    background: #f5f;\n    width: 900px;\n    height: 100%;\n}\n.wrapper {\n    position: fixed;\n    right: 25px;\n    bottom: 100px;\n    width: 300px;\n    height: calc(100vh - 125px);\n    max-height: 600px;\n    min-height: 300px;\n    overflow: hidden;\n    border-radius: 2em;\n    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n    background: #aea;\n}\n.new-conversation, .conversation-window, .message-window {\n    width: 300px;\n    height: 100%;\n    position: absolute;\n    border-radius: 2em;\n}\n.new-conversation {\n    background: #eaa;\n    left: 0;\n}\n.conversation-window {\n    background: #aae;\n    left: 300px;\n}\n.message-window {\n    background: #eea;\n    left: 600px;\n}\n.middle {\n    -webkit-transform: translateX(-300px);\n            transform: translateX(-300px);\n}\n.right {\n    -webkit-transform: translateX(-600px);\n            transform: translateX(-600px);\n}\n.slide-enter-active, .slide-leave-active,\n.spin-enter-active, .spin-leave-active {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n}\n.slide-enter, .slide-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n\n\n", ""]);
+exports.push([module.i, "\n.message.sent {\n    margin-left: 70px;\n    color: white;\n    background: rgb(0, 132, 255);\n}\n.message.received {\n    margin-right: 70px;\n    color: black;\n    background: rgb(241, 240, 240);\n}\n.ellipsis {\n    cursor: pointer;\n    margin:10px;\n}\n.menu-bubble {\n    position:absolute;\n    opacity:0;\n    -webkit-transition: opacity .4s ease-in-out;\n    transition: opacity .4s ease-in-out;\n}\n.ellipsis-menu {\n    left: -31px;\n    position: absolute;\n    background: black;\n    color: white;\n    border-radius: 1em;\n    padding: 5px 10px 5px 10px;\n    top: -47px;\n}\n.arrow-down {\n    left: -10px;\n    position: absolute;\n    width: 0;\n    height: 0;\n    border-left: 10px solid transparent;\n    border-right: 10px solid transparent;\n    border-top: 10px solid #000;\n    top: -15px;\n}\n.conversation-body {\n}\n.conversation-footer, .message-footer, .new-conversation-footer {\n    padding: 20px;\n    background: #ccc;\n}\n.conversation-header, .message-header, .new-conversation-header {\n    padding: 20px;\n    background: #ccc;\n}\n.conversation {\n    background: #cca;\n    margin: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.message-body, .conversation-body, .new-conversation-body {\n    overflow-y: auto;\n    height: calc(100vh - 307px);\n    overflow-x: hidden;\n}\n.message {\n    background: #cca;\n    margin: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n    cursor: pointer;\n}\n.chat-window {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n    border-radius: 2em;\n    background: #f5f;\n    width: 900px;\n    height: 100%;\n}\n.wrapper {\n    position: fixed;\n    right: 25px;\n    bottom: 100px;\n    width: 300px;\n    height: calc(100vh - 125px);\n    max-height: 600px;\n    min-height: 300px;\n    overflow: hidden;\n    border-radius: 2em;\n    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n    background: #aea;\n}\n.new-conversation, .conversation-window, .message-window {\n    width: 300px;\n    height: 100%;\n    position: absolute;\n    /*border-radius: 2em;*/\n}\n.new-conversation {\n    background: #eaa;\n    left: 0;\n}\n.conversation-window {\n    background: #aae;\n    left: 300px;\n}\n.message-window {\n    background: #eea;\n    left: 600px;\n}\n.middle {\n    -webkit-transform: translateX(-300px);\n            transform: translateX(-300px);\n}\n.right {\n    -webkit-transform: translateX(-600px);\n            transform: translateX(-600px);\n}\n.slide-enter-active, .slide-leave-active,\n.spin-enter-active, .spin-leave-active {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n}\n.slide-enter, .slide-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n\n\n", ""]);
 
 // exports
 
@@ -48235,6 +48235,21 @@ exports.push([module.i, "\n.conversation-body {\n}\n.conversation-footer,.messag
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -48311,6 +48326,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        clickEllipsis: function clickEllipsis(id) {
+            var elem = $(event.target);
+            console.log(elem);
+            if (!elem.hasClass('ellipsis')) {
+                console.log('Selecting parent');
+                elem = elem.parent();
+            }
+            console.log(elem.offset());
+            $('#menu-bubble').css({ 'top': elem.offset().top + 16, 'left': elem.offset().left + 15, opacity: 1 });
+        },
         prevPage: function prevPage() {
             if (this.page > 1) this.page--;
         },
@@ -48479,26 +48504,53 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "conversation-body" },
-                          _vm._l(_vm.conversations, function(conversation) {
-                            return _c(
-                              "div",
-                              {
-                                staticClass: "conversation",
-                                on: {
-                                  click: function($event) {
-                                    _vm.selectConversation(conversation.id)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(conversation.number) +
-                                    "\n                            "
-                                )
+                          [
+                            _vm._l(_vm.conversations, function(conversation) {
+                              return [
+                                _c("div", { staticClass: "d-flex" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-1 d-flex align-items-center justify-content-center ellipsis",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.clickEllipsis(conversation.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-ellipsis-h fa-lg"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "col conversation",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.selectConversation(
+                                            conversation.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                        " +
+                                          _vm._s(conversation.number) +
+                                          "\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
                               ]
-                            )
-                          })
+                            })
+                          ],
+                          2
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "conversation-footer" }, [
@@ -48518,9 +48570,22 @@ var render = function() {
                             attrs: { id: "message-body" }
                           },
                           _vm._l(_vm.messages, function(message) {
-                            return _c("div", { staticClass: "message" }, [
-                              _vm._v(_vm._s(message.text))
-                            ])
+                            return _c(
+                              "div",
+                              {
+                                staticClass: "message",
+                                class: {
+                                  sent: message.sent,
+                                  received: !message.sent
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(message.text) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
                           })
                         ),
                         _vm._v(" "),
@@ -48535,12 +48600,31 @@ var render = function() {
             : _vm._e()
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "menu-bubble", attrs: { id: "menu-bubble" } },
+      [
+        _c("div", { staticClass: "position-relative" }, [
+          _c("div", { staticClass: "arrow-down" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "ellipsis-menu" }, [_vm._v("Archive")])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
