@@ -48224,7 +48224,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n}\n.chat-window {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n    border-radius:2em;\n    background:#f5f;\n    width:900px;\n}\n.wrapper {\n    position: fixed;\n    right: 25px;\n    bottom: 100px;\n    width: 300px;\n    height: 600px;\n    overflow:hidden;\n    border-radius:2em;\n    -webkit-box-shadow: 0 0 1rem rgba(0,0,0,0.15);\n            box-shadow: 0 0 1rem rgba(0,0,0,0.15);\n    background: #aea;\n}\n.new-conversation, .conversation-window, .message-window {\n    width:300px;\n    height:600px;\n    position:absolute;\n    border-radius:2em;\n    padding:20px;\n}\n.new-conversation {\n    background: #eaa;\n    left:0;\n}\n.conversation-window {\n    background: #aae;\n    left:300px;\n}\n.message-window {\n    background: #eea;\n    left:600px;\n}\n.middle {\n    -webkit-transform:translateX(-300px);\n            transform:translateX(-300px);\n}\n.right {\n    -webkit-transform:translateX(-600px);\n            transform:translateX(-600px);\n}\n.slide-enter-active, .slide-leave-active,\n.spin-enter-active, .spin-leave-active {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n}\n.slide-enter, .slide-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n\n\n", ""]);
+exports.push([module.i, "\n.conversation-body {\n}\n.conversation-footer,.message-footer, .new-conversation-footer {\n    padding:20px;\n    background: #ccc;\n}\n.conversation-header, .message-header, .new-conversation-header {\n    padding:20px;\n    background: #ccc;\n}\n.conversation {\n    background: #cca;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.message-body, .conversation-body {\n    overflow-y: auto;\n    height: calc(100vh - 307px);\n    overflow-x: hidden;\n}\n.message {\n    background: #cca;\n    margin: 10px;\n    border-radius: 1em;\n    cursor: pointer;\n    padding: 5px 20px;\n}\n.chat-bubble {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n}\n.chat-window {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n    border-radius: 2em;\n    background: #f5f;\n    width: 900px;\n    height: 100%;\n}\n.wrapper {\n    position: fixed;\n    right: 25px;\n    bottom: 100px;\n    width: 300px;\n    height: calc(100vh - 125px);\n    max-height: 600px;\n    min-height: 300px;\n    overflow: hidden;\n    border-radius: 2em;\n    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);\n    background: #aea;\n}\n.new-conversation, .conversation-window, .message-window {\n    width: 300px;\n    height: 100%;\n    position: absolute;\n    border-radius: 2em;\n}\n.new-conversation {\n    background: #eaa;\n    left: 0;\n}\n.conversation-window {\n    background: #aae;\n    left: 300px;\n}\n.message-window {\n    background: #eea;\n    left: 600px;\n}\n.middle {\n    -webkit-transform: translateX(-300px);\n            transform: translateX(-300px);\n}\n.right {\n    -webkit-transform: translateX(-600px);\n            transform: translateX(-600px);\n}\n.slide-enter-active, .slide-leave-active,\n.spin-enter-active, .spin-leave-active {\n    -webkit-transition: all .5s ease-in-out;\n    transition: all .5s ease-in-out;\n}\n.slide-enter, .slide-leave-to {\n    -webkit-transform: translateX(100%);\n            transform: translateX(100%);\n}\n.spin-enter, .spin-leave-to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n\n\n", ""]);
 
 // exports
 
@@ -48272,13 +48272,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             page: 2,
-            visible: false
+            visible: false,
+            messages: [],
+            conversations: [],
+            conversationId: null,
+            message: ''
         };
+    },
+    mounted: function mounted() {
+        this.conversationId = this.selectedConversation;
+        this.getConversations();
+        if (this.conversationId) this.getMessages();
     },
 
     methods: {
@@ -48287,8 +48316,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         nextPage: function nextPage() {
             if (this.page < 3) this.page++;
+        },
+        getMessages: function getMessages() {
+            var _this = this;
+
+            axios.get('/api/messages/' + this.conversationId).then(function (response) {
+                _this.messages = response.data;
+                _this.scrollDown();
+            });
+        },
+        getConversations: function getConversations() {
+            var _this2 = this;
+
+            axios.get('/api/conversations').then(function (response) {
+                _this2.conversations = response.data;
+            });
+        },
+        selectConversation: function selectConversation(item) {
+            this.conversationId = item;
+            this.getMessages();
+            this.page = 3;
+        },
+        scrollDown: function scrollDown() {
+            var msgWindow = $('#message-body');
+            msgWindow.scrollTop(1000000);
+            console.log('scrolling down');
         }
     },
+
     computed: {
         getClass: function getClass() {
             if (this.page === 1) {
@@ -48403,15 +48458,75 @@ var render = function() {
                     { staticClass: "chat-window", class: _vm.getClass },
                     [
                       _c("div", { staticClass: "new-conversation" }, [
-                        _vm._v("Page 1")
+                        _c("div", { staticClass: "new-conversation-header" }, [
+                          _vm._v("Header")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "new-conversation-body" }, [
+                          _vm._v("Body")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "new-conversation-footer" }, [
+                          _vm._v("Footer")
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "conversation-window" }, [
-                        _vm._v("Page 2")
+                        _c("div", { staticClass: "conversation-header" }, [
+                          _vm._v("Header")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "conversation-body" },
+                          _vm._l(_vm.conversations, function(conversation) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass: "conversation",
+                                on: {
+                                  click: function($event) {
+                                    _vm.selectConversation(conversation.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(conversation.number) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          })
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "conversation-footer" }, [
+                          _vm._v("Footer")
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "message-window" }, [
-                        _vm._v("Page 3")
+                        _c("div", { staticClass: "message-header" }, [
+                          _vm._v("Header")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "message-body",
+                            attrs: { id: "message-body" }
+                          },
+                          _vm._l(_vm.messages, function(message) {
+                            return _c("div", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.text))
+                            ])
+                          })
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "message-footer" }, [
+                          _vm._v("Footer")
+                        ])
                       ])
                     ]
                   )
